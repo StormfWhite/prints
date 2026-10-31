@@ -198,6 +198,13 @@ header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, va
   <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
 </svg>
 
+<script>/* scrolling puts the keyboard away (Storm 2026-10-31) */
+(function(){var x0=0,y0=0,on=false;
+document.addEventListener("touchstart",function(e){on=e.touches.length===1;if(on){x0=e.touches[0].clientX;y0=e.touches[0].clientY}},{passive:true});
+document.addEventListener("touchmove",function(e){if(!on)return;var dx=e.touches[0].clientX-x0,dy=e.touches[0].clientY-y0;
+if(Math.abs(dy)<12||Math.abs(dy)<Math.abs(dx)*1.5)return;on=false;var f=document.activeElement;
+if(f&&/^(INPUT|TEXTAREA|SELECT)$/.test(f.tagName)&&f.type!=="checkbox"&&!(f.tagName==="TEXTAREA"&&f.scrollHeight>f.clientHeight+2))f.blur();},{passive:true});})();
+</script>
 <script src="app.js"></script>
 </body>
 </html>

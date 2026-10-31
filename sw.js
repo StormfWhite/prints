@@ -1,5 +1,5 @@
 // Print Finder: the app shell cached so it opens offline (searches still need the laptop).
-const VERSION = "p1";
+const VERSION = "p2";
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(caches.keys()
   .then((ks) => Promise.all(ks.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim())));
